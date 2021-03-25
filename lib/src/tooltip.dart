@@ -97,12 +97,17 @@ class SimpleTooltip extends StatefulWidget {
   /// the widget's route is not active
   final RouteObserver<PageRoute>? routeObserver;
 
+  ///
+  /// The targetCenter where the arrow points to(if null,defaults to center)
+  final Offset? targetCenter;
+
   SimpleTooltip({
     Key? key,
     required this.child,
     this.tooltipDirection = TooltipDirection.up,
     required this.content,
     required this.show,
+    this.targetCenter,
     // this.onClose,
     this.ballonPadding = const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
     this.maxWidth,
@@ -317,6 +322,7 @@ class SimpleTooltipState extends State<SimpleTooltip> with RouteAware {
               }
             },
             child: _Ballon(
+              targetCenter: widget.targetCenter,
               content: widget.content,
               borderRadius: widget.borderRadius,
               arrowBaseWidth: widget.arrowBaseWidth,
